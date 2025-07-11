@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "api-docs-backend",
+		"name": "API Documentation Backend",
+		"description": "Complete collection for the API Documentation Backend with all CRUD operations and sidebar structure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All API Docs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/docs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs"
+					]
+				},
+				"description": "Get all API documentation entries. Optionally filter by search query."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All API Docs (with search)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/docs?search=batch",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "batch",
+							"description": "Search in api_title, method, or endpoint"
+						}
+					]
+				},
+				"description": "Get all API docs filtered by search term"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single API Doc",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/docs/update-batch-job",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs",
+						"update-batch-job"
+					]
+				},
+				"description": "Get a single API documentation entry by its ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sidebar Structure",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/docs/sidebar",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs",
+						"sidebar"
+					]
+				},
+				"description": "Get nested structure for building sidebar navigation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New API Doc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"get-user-profile\",\n  \"title\": \"User API\",\n  \"subtitle\": \"User Management\",\n  \"api_title\": \"Get User Profile\",\n  \"method\": \"GET\",\n  \"endpoint\": \"/v1/users/{userId}/profile\",\n  \"endpoint_description\": \"Retrieve user profile information\",\n  \"description\": \"Fetches detailed user profile information including preferences and settings.\",\n  \"request_body\": {},\n  \"path_parameters\": [\n    {\n      \"name\": \"userId\",\n      \"type\": \"string\",\n      \"required\": true,\n      \"description\": \"The unique identifier of the user\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/docs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs"
+					]
+				},
+				"description": "Create a new API documentation entry"
+			},
+			"response": []
+		},
+		{
+			"name": "Create API Doc with Request Body",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"create-user\",\n  \"title\": \"User API\",\n  \"subtitle\": \"User Management\",\n  \"api_title\": \"Create User\",\n  \"method\": \"POST\",\n  \"endpoint\": \"/v1/users\",\n  \"endpoint_description\": \"Create a new user account\",\n  \"description\": \"Creates a new user account with the provided information.\",\n  \"request_body\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"email\": {\n        \"type\": \"string\",\n        \"format\": \"email\",\n        \"description\": \"User's email address\"\n      },\n      \"name\": {\n        \"type\": \"string\",\n        \"description\": \"User's full name\"\n      },\n      \"password\": {\n        \"type\": \"string\",\n        \"minLength\": 8,\n        \"description\": \"User's password\"\n      },\n      \"role\": {\n        \"type\": \"string\",\n        \"enum\": [\"user\", \"admin\"],\n        \"default\": \"user\",\n        \"description\": \"User's role\"\n      }\n    },\n    \"required\": [\"email\", \"name\", \"password\"]\n  },\n  \"path_parameters\": []\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/docs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs"
+					]
+				},
+				"description": "Create a new API documentation entry with request body schema"
+			},
+			"response": []
+		},
+		{
+			"name": "Update API Doc",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"api_title\": \"Updated Get User Profile\",\n  \"description\": \"Updated description for fetching user profile information.\",\n  \"endpoint_description\": \"Updated endpoint description\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/docs/get-user-profile",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs",
+						"get-user-profile"
+					]
+				},
+				"description": "Update an existing API documentation entry"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete API Doc",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/docs/get-user-profile",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs",
+						"get-user-profile"
+					]
+				},
+				"description": "Delete an API documentation entry by ID"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+} 
