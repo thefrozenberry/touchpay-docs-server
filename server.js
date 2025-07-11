@@ -6,7 +6,7 @@ require('dotenv').config();
 const docsRouter = require('./routes/docs');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://ripun:basumatary@cluster0.buf7x9h.mongodb.net/ApiDoc?retryWrites=true&w=majority&appName=Cluster0';
 
 // Middleware

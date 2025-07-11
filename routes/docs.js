@@ -49,6 +49,23 @@ router.get('/sidebar', async (req, res, next) => {
   }
 });
 
+// GET /api/docs/status-codes
+router.get('/status-codes', (req, res) => {
+  res.json([
+    { code: 200, label: 'OK', meaning: 'Success', description: 'Standard response for successful requests.' },
+    { code: 201, label: 'Created', meaning: 'Resource Created', description: 'Used after creating a resource (like user registration).' },
+    { code: 202, label: 'Accepted', meaning: 'Queued or Processing', description: 'Request accepted but not fully processed yet.' },
+    { code: 400, label: 'Bad Request', meaning: 'Invalid request', description: 'Something is wrong with the input.' },
+    { code: 401, label: 'Unauthorized', meaning: 'Missing or invalid auth', description: 'User is not authenticated (e.g., missing token).' },
+    { code: 403, label: 'Forbidden', meaning: 'Authenticated but no permission', description: 'You do not have access to this resource.' },
+    { code: 404, label: 'Not Found', meaning: 'Resource missing', description: 'The requested resource (like a user or record) does not exist.' },
+    { code: 409, label: 'Conflict', meaning: 'Duplicate or conflict', description: 'E.g., user already exists or record conflict.' },
+    { code: 422, label: 'Unprocessable Entity', meaning: 'Validation error', description: 'Input was understood but had semantic errors.' },
+    { code: 500, label: 'Internal Server Error', meaning: 'Unexpected error', description: 'Server crashed or unexpected condition.' },
+    { code: 503, label: 'Service Unavailable', meaning: 'Server down or overloaded', description: 'Try again later.' }
+  ]);
+});
+
 // GET /api/docs/:id
 router.get('/:id', async (req, res, next) => {
   try {

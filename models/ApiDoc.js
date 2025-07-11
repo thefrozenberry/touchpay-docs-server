@@ -17,6 +17,7 @@ const ApiDocSchema = new mongoose.Schema({
   endpoint_description: { type: String, required: true },
   description: { type: String, required: true },
   request_body: { type: Object, required: false },
+  request_body_schema: { type: Object, required: false },
   response_body: { type: Object, required: false },
   path_parameters: { type: [PathParameterSchema], required: false },
   accessToken: { type: String, required: true, enum: ['required', 'not required'] },
